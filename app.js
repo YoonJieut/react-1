@@ -32,3 +32,10 @@ function component(elementNode, attributes, children){
   // 함수가 호출되는 순간 문자열이 반환
 }
 
+// 문자열로 잘 작동되는지 테스트
+let test =
+  component('div', {style : 'color:blue;'}, [
+    component('h1',{},['this is page1']),
+    component('h3',{},['this is h3'])
+  ]);
+console.log(test);
