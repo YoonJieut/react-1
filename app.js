@@ -15,7 +15,11 @@ function component(elementNode, attributes, children){
   // 조건식에서 "존재유무"로도 사용하기도 한다.
   if (children) {
     children.forEach((child)=>{
-      if()
+      if(typeof child === "string"){
+        elementStr += child;
+      } else {
+        elementStr+= component(child.elementNode, child.attributes, child.children);
+      }
     })
   }
 
