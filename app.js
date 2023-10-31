@@ -1,4 +1,20 @@
-
+/**
+ * 에디터에 드디어 내장된 JSDoc 주석 작성 방식
+ * 
+ * @param {string} elementNode 
+ * @param {object} attributes 
+ * @param {array} children 
+ * @returns string
+ * 
+ * @example
+ * component(
+ *  'div',
+ *  { style : 'color:blue;' },
+ *  [
+ *    component('h1', {},['This is Page 1'])
+ *  ]
+ * )
+ */
 
 
 function component(elementNode, attributes, children){
