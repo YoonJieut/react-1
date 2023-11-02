@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /**
+ * 에디터에 드디어 내장된 JSDoc 주석 작성 방식
+ * 
+ * @param {string} elementNode 
+ * @param {object} attributes 
+ * @param {array} children 
+ * @returns string
+ * 
+ * @example
+ * component(
+ *  'div',
+ *  { style : 'color:blue;' },
+ *  [
+ *    component('h1', {},['This is Page 1'])
+ *  ]
+ * )
+ */
+
+
+function component(elementNode, attributes, children){
+  let elementStr = `<${elementNode}`;
+  for (let key in attributes) {
+    elementStr += `${key}="${attributes[key]}"`;
+  }
+  elementStr+='>';
+
+  if (children) {
+    children.forEach((child)=>{
+      if(typeof child === "string"){
+        elementStr += child;
+      } else {
+        elementStr+= component(child.elementNode, child.attributes, child.children);
+      }
+    })
+  }
+
+  elementStr += `</${elementNode}>`; 
+  return elementStr;
+}
+
+  window.addEventListener('hashchange',()=>{
+    const contentDiv = document.getElementById('root');
+    // window.location 객체는 현재 url에 대한 정보를 제공
+    // hash 속성은 url의 해시 부분을 반환
+    // 예를 들어 http://example.com#page1 이라는 url이 있다면
+    // hash 속성은 #page1을 반환한다.
+    // substr() 메서드는 문자열에서 특정 위치에서 시작하여 특정 문자수 만큼의 문자들을 반환한다.
+    // #을 제외한 문자열을 반환하기 위해 substr(1)을 사용한다.
+    // a태그의 href 속성에는 page1~page4가 있다.
+
+    const hash = window.location.hash.substr(1);
+    
+  });
+
+
+// // 문자열로 잘 작동되는지 테스트
+// let test =
+//   component('div', {style : 'color:blue;'}, [
+//     component('h1',{},['this is page1']),
+//     component('h3',{},['this is h3'])
+//   ]);
+// console.log(test);
+  </script>
+</body>
+</html>
