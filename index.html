@@ -73,12 +73,17 @@ function component(elementNode, attributes, children){
         case 'page2':
           contentDiv.innerHTML = component('div', {style : 'background-color:cyan;'}, [component('h1',{},['this is page2'])]);
           break;
-        case 'page3':
-          contentDiv.innerHTML = component('div', {style : 'display:flex; justify-content:center; color: #ff2222;'}, [component('h1',{},['this is page3'])]);
-          break;
+      case 'page3':
+        contentDiv.innerHTML = component('div', {style : 'display:flex; justify-content:center; color: #ff2222;'}, [component('h1',{},['this is page3'])]);
+        break;
+      case 'page4':
+        contentDiv.innerHTML = component('div', {style : 'display:flex; justify-content:center; color: #333;'}, [component('h1',{},['this is page4'])]);
+        break;
+      default : // 조건식이 다 부합하지 않을 때, 즉 false일 때
+      // defalut가 실행된다. 최초의 접속은 hash가 없어서 default가 실행된다.
+      contentDiv.innerHTML = component('h1', {}, ['반갑숩니당 첫 페이지 입니당']);
+      
     }
-
-
   });
   </script>
 </body>
